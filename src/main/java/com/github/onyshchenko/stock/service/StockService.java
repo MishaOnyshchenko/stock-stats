@@ -11,4 +11,6 @@ public interface StockService {
     Queue<String> getUrls(Set<Symbol> symbols);
 
     List<String> getStockDefinitions(Queue<String> urls);
+
+    void createStocks(Queue<String> urls);
 }

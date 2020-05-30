@@ -1,7 +1,8 @@
 Stock stats
 ========================
 
-##Setup##
+Setup:
+---------------
 
 Java
 ----------
@@ -14,3 +15,13 @@ Maven
 PostgreSQL
 -----------
   * Download and install latest PostgreSQL
+
+## Building / running ##
+
+
+
+To **_run application with maven_** execute
+
+>mvn clean install && mvn spring-boot:run
+  
+  

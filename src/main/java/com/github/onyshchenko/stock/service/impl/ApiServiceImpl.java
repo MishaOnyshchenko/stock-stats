@@ -1,6 +1,5 @@
 package com.github.onyshchenko.stock.service.impl;
 
-import com.github.onyshchenko.stock.data.exceptions.ReadApiException;
 import com.github.onyshchenko.stock.service.ApiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class ApiServiceImpl implements ApiService {
             }
         } catch (IOException ex) {
             log.error("Data from API weren't upload: " + ex.getMessage());
-            throw new ReadApiException("Error while reading stocks API!");
         }
         return data.toString();
     }

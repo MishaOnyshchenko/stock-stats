@@ -12,17 +12,17 @@ import java.util.Date;
 @Setter
 public class Symbol {
 
-    String symbol;
-    String exchange;
-    String name;
-    Date date;
-    String type;
-    String iexId;
-    String region;
-    String currency;
-    Boolean isEnabled;
-    String figi;
-    Long cik;
+    private String symbol;
+    private String exchange;
+    private String name;
+    private Date date;
+    private String type;
+    private String iexId;
+    private String region;
+    private String currency;
+    private Boolean isEnabled;
+    private String figi;
+    private Long cik;
 
 }
 
