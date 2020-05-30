@@ -4,20 +4,19 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    <changeSet id="create_symbol_table" author="Misha_Onyshchenko">
-        <createTable tableName="symbol">
+    <changeSet id="create_stock_table" author="Misha_Onyshchenko">
+        <createTable tableName="stock">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="symbol" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="exchange" type="varchar(255)">
+            <column name="company_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="close" type="decimal(5,2)"/>
+            <column name="change_percent" type="decimal(11,2)"/>
         </createTable>
     </changeSet>
 

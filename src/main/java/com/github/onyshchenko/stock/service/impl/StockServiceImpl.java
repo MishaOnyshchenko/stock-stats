@@ -2,12 +2,14 @@ package com.github.onyshchenko.stock.service.impl;
 
 import com.github.onyshchenko.stock.data.domain.Stock;
 import com.github.onyshchenko.stock.data.domain.Symbol;
+import com.github.onyshchenko.stock.data.repository.StockRepository;
 import com.github.onyshchenko.stock.service.ApiService;
 import com.github.onyshchenko.stock.service.StockService;
 import com.github.onyshchenko.stock.utils.mappers.StockMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Queue;
@@ -26,6 +28,9 @@ public class StockServiceImpl implements StockService {
     @Autowired
     private StockMapper stockMapper;
 
+    @Autowired
+    private StockRepository stockRepository;
+
 
     @Override
     public Queue<String> getUrls(Set<Symbol> symbols) {
@@ -42,12 +47,23 @@ public class StockServiceImpl implements StockService {
         return urls.parallelStream().map(u -> apiService.call(u)).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public void createStocks(Queue<String> urls) {
         while (!urls.isEmpty()) {
             String stockDefinition = apiService.call(urls.poll());
             Stock stock = stockMapper.toStock(stockDefinition);
-            log.info(urls.size() + ": " + stock.getCompanyName());
+            save(stock);
         }
+    }
+
+    @Transactional
+    public Stock save(Stock stock) {
+        return stockRepository.save(stock);
+    }
+
+    @Transactional
+    public Stock get(Long id) {
+        return stockRepository.getOne(id);
     }
 }

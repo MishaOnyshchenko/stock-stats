@@ -12,9 +12,9 @@ Maven
 ----------
  * Download and install Maven from `https://maven.apache.org/download.cgi`
 
-PostgreSQL
+MariaDB
 -----------
-  * Download and install latest PostgreSQL
+Download a MariaDB installation by this link: https://downloads.mariadb.org/mariadb/10.2.7/
 
 ## Building / running ##
 
