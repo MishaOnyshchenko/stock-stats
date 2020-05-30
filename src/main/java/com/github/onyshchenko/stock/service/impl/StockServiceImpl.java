@@ -7,24 +7,31 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class StockServiceImpl implements StockService {
 
-    private static final String STOCK_URL_PREFIX = "https://sandbox.iexapis.com/stable/stock/";
-    private static final String STOCK_URL_SUFFIX = "/quote?token=Tpk_ee567917a6b640bb8602834c9d30e571";
-
     @Autowired
     private ApiService apiService;
 
     @Override
-    public void getStocks(Set<Symbol> symbols) {
+    public Queue<String> getUrls(Set<Symbol> symbols) {
+        Queue<String> urls = new ConcurrentLinkedQueue<>();
         for (Symbol symbol : symbols) {
             String stockUrl = String.format("https://sandbox.iexapis.com/stable/stock/%s/quote?token=Tpk_ee567917a6b640bb8602834c9d30e571", symbol.getSymbol());
-            String stockInfo = apiService.call(stockUrl);
-            log.info(stockInfo);
+            urls.add(stockUrl);
         }
+        return urls;
+    }
+
+    @Override
+    public List<String> getStockDefinitions(Queue<String> urls) {
+        return urls.parallelStream().map(u -> apiService.call(u)).collect(Collectors.toList());
     }
 }

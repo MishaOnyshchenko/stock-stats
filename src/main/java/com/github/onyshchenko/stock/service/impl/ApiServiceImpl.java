@@ -16,18 +16,17 @@ import java.net.URL;
 public class ApiServiceImpl implements ApiService {
 
     @Override
-    public String call(String url) {
-        String data = null;
+    public synchronized String call(String url) {
+        StringBuffer data = new StringBuffer();
+        int character;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
-            if ((data = reader.readLine()) != null) {
-
-                return data;
-            } else {
-                throw new ReadApiException("Error while reading stocks API!");
+            while ((character = reader.read()) != -1) {
+                data.append((char) character);
             }
         } catch (IOException ex) {
             log.error("Data from API weren't upload: " + ex.getMessage());
             throw new ReadApiException("Error while reading stocks API!");
         }
+        return data.toString();
     }
 }

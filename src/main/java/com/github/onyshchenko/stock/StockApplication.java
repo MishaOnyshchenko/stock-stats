@@ -31,6 +31,6 @@ public class StockApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        stockService.getStocks(symbolService.getSymbols());
+        symbolService.getSymbols();
     }
 }
