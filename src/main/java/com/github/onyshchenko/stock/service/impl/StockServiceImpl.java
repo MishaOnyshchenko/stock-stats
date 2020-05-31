@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Queue;
 
 @Slf4j
@@ -53,5 +54,11 @@ public class StockServiceImpl implements StockService {
     @Transactional
     public Stock get(Long id) {
         return stockRepository.getOne(id);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Stock> getAll() {
+        return stockRepository.findAll();
     }
 }

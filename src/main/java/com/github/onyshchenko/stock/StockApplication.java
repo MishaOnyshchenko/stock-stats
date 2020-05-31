@@ -1,8 +1,6 @@
 package com.github.onyshchenko.stock;
 
-import com.github.onyshchenko.stock.service.StockService;
-import com.github.onyshchenko.stock.service.SymbolService;
-import com.github.onyshchenko.stock.service.UrlService;
+import com.github.onyshchenko.stock.service.RunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,13 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class StockApplication implements CommandLineRunner {
 
     @Autowired
-    private SymbolService symbolService;
-
-    @Autowired
-    private StockService stockService;
-
-    @Autowired
-    private UrlService urlService;
+    RunService runService;
 
     public static void main(String[] args) {
         SpringApplication.run(StockApplication.class, args);
@@ -35,6 +27,6 @@ public class StockApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        symbolService.getSymbols();
+        runService.runApp();
     }
 }
