@@ -2,6 +2,7 @@ package com.github.onyshchenko.stock;
 
 import com.github.onyshchenko.stock.service.StockService;
 import com.github.onyshchenko.stock.service.SymbolService;
+import com.github.onyshchenko.stock.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +25,9 @@ public class StockApplication implements CommandLineRunner {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private UrlService urlService;
 
     public static void main(String[] args) {
         SpringApplication.run(StockApplication.class, args);
