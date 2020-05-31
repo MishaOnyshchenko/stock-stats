@@ -25,6 +25,9 @@ public class Stock {
     @Column(name = "company_name")
     private String companyName;
 
+    @Column(name = "open")
+    private BigDecimal open;
+
     @Column(name = "close")
     private BigDecimal close;
 

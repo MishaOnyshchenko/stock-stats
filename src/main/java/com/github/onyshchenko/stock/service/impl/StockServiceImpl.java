@@ -47,7 +47,6 @@ public class StockServiceImpl implements StockService {
         return urls.parallelStream().map(u -> apiService.call(u)).collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
     public void createStocks(Queue<String> urls) {
         while (!urls.isEmpty()) {
@@ -55,6 +54,13 @@ public class StockServiceImpl implements StockService {
             Stock stock = stockMapper.toStock(stockDefinition);
             save(stock);
         }
+    }
+
+    @Transactional
+    @Override
+    public Stock createStock(String stockDefinition) {
+        Stock stock = stockMapper.toStock(stockDefinition);
+        return save(stock);
     }
 
     @Transactional

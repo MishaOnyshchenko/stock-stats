@@ -10,11 +10,11 @@ Java
 
 Maven
 ----------
- * Download and install Maven from `https://maven.apache.org/download.cgi`
+* Download and install Maven from `https://maven.apache.org/download.cgi`
 
 MariaDB
 -----------
-Download a MariaDB installation by this link: https://downloads.mariadb.org/mariadb/10.2.7/
+* Download and install MariaDB from `https://downloads.mariadb.org/mariadb/10.2.7/`
 
 ## Building / running ##
 
