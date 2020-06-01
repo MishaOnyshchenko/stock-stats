@@ -55,14 +55,15 @@ public class StockServiceImpl implements StockService {
         return stockRepository.save(stock);
     }
 
-    @Transactional
-    public Stock get(Long id) {
-        return stockRepository.getOne(id);
+    @Transactional(readOnly = true)
+    @Override
+    public List<Stock> getHighestValues(int limit) {
+        return customStockRepository.findHighestValueOrderedByCloseAndCompanyName(limit);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<Stock> getAll() {
-        return stockRepository.findAll();
+    public List<Stock> getGreatestChanges(int limit) {
+        return customStockRepository.findOrderedByGreatestChange(limit);
     }
 }

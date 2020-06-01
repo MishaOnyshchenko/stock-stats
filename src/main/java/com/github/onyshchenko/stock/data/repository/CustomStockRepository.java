@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CustomStockRepository {
 
-    List<Stock> findGreatestValueOrderedByCloseAndCompanyName(int limit);
+    List<Stock> findHighestValueOrderedByCloseAndCompanyName(int limit);
 
     List<Stock> findOrderedByGreatestChange(int limit);
 }

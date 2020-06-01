@@ -11,5 +11,7 @@ public interface StockService {
 
     Stock createStock(String stockDefinition);
 
-    List<Stock> getAll();
+    List<Stock> getHighestValues(int limit);
+
+    List<Stock> getGreatestChanges(int limit);
 }

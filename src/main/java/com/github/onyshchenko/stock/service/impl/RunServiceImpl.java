@@ -1,10 +1,7 @@
 package com.github.onyshchenko.stock.service.impl;
 
 import com.github.onyshchenko.stock.data.domain.Symbol;
-import com.github.onyshchenko.stock.service.RunService;
-import com.github.onyshchenko.stock.service.StockService;
-import com.github.onyshchenko.stock.service.SymbolService;
-import com.github.onyshchenko.stock.service.UrlService;
+import com.github.onyshchenko.stock.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +24,9 @@ public class RunServiceImpl implements RunService {
     @Autowired
     private StockService stockService;
 
+    @Autowired
+    private PrintService printService;
+
 
     @Override
     public void runApp() {
@@ -46,12 +46,10 @@ public class RunServiceImpl implements RunService {
 
     private Thread getPrintThread() {
         return new Thread(() -> {
-            int i = 1;
             while (true) {
-                log.info("Get all stocks: " + i++);
-                stockService.getAll();
+                printService.printStats(5);
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

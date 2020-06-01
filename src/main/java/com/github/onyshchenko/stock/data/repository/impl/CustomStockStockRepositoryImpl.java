@@ -16,7 +16,7 @@ public class CustomStockStockRepositoryImpl implements CustomStockRepository {
 
 
     @Override
-    public List<Stock> findGreatestValueOrderedByCloseAndCompanyName(int limit) {
+    public List<Stock> findHighestValueOrderedByCloseAndCompanyName(int limit) {
         return entityManager.createQuery("SELECT s FROM Stock s ORDER BY s.close DESC, s.companyName",
                 Stock.class).setMaxResults(limit).getResultList();
     }
