@@ -1,6 +1,7 @@
 package com.github.onyshchenko.stock.service.impl;
 
 import com.github.onyshchenko.stock.data.domain.Stock;
+import com.github.onyshchenko.stock.data.repository.CustomStockRepository;
 import com.github.onyshchenko.stock.data.repository.StockRepository;
 import com.github.onyshchenko.stock.service.ApiService;
 import com.github.onyshchenko.stock.service.StockService;
@@ -25,6 +26,9 @@ public class StockServiceImpl implements StockService {
 
     @Autowired
     private StockRepository stockRepository;
+
+    @Autowired
+    private CustomStockRepository customStockRepository;
 
     @Override
     public void createStocks(Queue<String> urls) {
